@@ -6,24 +6,29 @@ namespace Solid_Waste3
 {
     public partial class Form1 : Form
     {
-
+// Connects the buttons to the datagridview 
         BindingSource truck3BindingSource = new BindingSource();
         BindingSource rfid2BindingSource = new BindingSource();
         BindingSource gps2BindingSource = new BindingSource();
         BindingSource images2BindingSource = new BindingSource();
         BindingSource showBindingSource = new BindingSource();
+        
+        // Connection string to SQL database 
 
         MySqlConnection connection = new MySqlConnection("datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;");
 
         MySqlCommand command;
 
         MySqlDataReader reader;
+        
+        // Initializes form 
 
         public Form1()
         {
             InitializeComponent();
         }
-
+       
+       // Connects button 1 to the Trucks DAO and Trucks table in the sql database 
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -34,7 +39,10 @@ namespace Solid_Waste3
 
             dataGridView1.DataSource = truck3BindingSource;
         }
-
+       
+       
+        // Connects button 2 to the RFID DAO and RFID table in the sql database 
+       
         private void button2_Click(object sender, EventArgs e)
         {
             RFID2DAO rFID2DAO = new RFID2DAO();
@@ -44,7 +52,9 @@ namespace Solid_Waste3
 
             dataGridView1.DataSource = rfid2BindingSource;
         }
-
+     
+        // Connects button 1 to the GPS DAO and GPS table in the sql database 
+     
         private void button3_Click(object sender, EventArgs e)
         {
             GPS2DAO gPS2DAO = new GPS2DAO();
@@ -57,10 +67,14 @@ namespace Solid_Waste3
 
 
         }
-
+        
+         // Connects button 1 to the Images button and Images table in the sql database takes the most recent pictures from database and displays it in 
+         // 3 different picture boxes
 
         private void button6_Click(object sender, EventArgs e)
         {
+        
+        // connection string to database
 
 
             MySqlConnection connection = new MySqlConnection("datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;");
@@ -74,6 +88,8 @@ namespace Solid_Waste3
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
+                
+                // reads bytes and converts to a picture 
                 {
                     byte[] imageData = (byte[])reader["Photo_Data"];
 
@@ -99,7 +115,7 @@ namespace Solid_Waste3
 
         }
 
-
+       // initializes each picture box 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -120,17 +136,19 @@ namespace Solid_Waste3
         {
 
         }
-
+     
+     // search button 
         private void button4_Click(object sender, EventArgs e)
         {
             string searchTerm = textBox1.Text;
-
+      
+      // connection string 
 
             MySqlConnection connection = new MySqlConnection("datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;");
 
             connection.Open();
 
-
+    // Joins all tables and allows all of them to be searched at once by ID number
 
             string query = "SELECT ID, Foreman, TruckNumber FROM TRUCKS WHERE ID LIKE '%" + searchTerm + "%' " +
                   "UNION " +
