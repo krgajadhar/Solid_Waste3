@@ -44,7 +44,8 @@ namespace Solid_Waste3
 
                 }
             }
-
+         
+            // closes connection after values are returned 
             connection.Close();
 
 
