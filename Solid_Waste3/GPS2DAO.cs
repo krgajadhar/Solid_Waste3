@@ -9,23 +9,26 @@ namespace Solid_Waste3
 {
     internal class GPS2DAO
     {
-        string connectionString =
-
-            " datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;";
-
-
-        public List<GPS2> getallgps()
+        // connection string to database 
+        string connectionString =" datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;" 
+       
+            //intializes to create list of values 
+            
+            public List<GPS2> getallgps()
         {
-            //start with empty list 
+            //Start with empty list 
             List<GPS2> returnThese = new List<GPS2>();
         
-            // connect to mysql server 
+            // Connect to mysql server 
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             connection.Open();
+            
+            // Selects all values from GPS table in database
             MySqlCommand command = new MySqlCommand("SELECT * FROM GPS", connection);
-
+            
+            // Reads values from the GPS table in database 
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
