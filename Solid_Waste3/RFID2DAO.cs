@@ -9,6 +9,7 @@ namespace Solid_Waste3
 {
     internal class RFID2DAO
     {
+    //connection string to database 
         string connectionString =
 
            " datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;";
