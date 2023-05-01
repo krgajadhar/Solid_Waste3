@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Solid_Waste3
 {
+    // intializes columns from RFID table in the database
     internal class RFID2
     {
         public int ID { get; set; }
