@@ -14,7 +14,7 @@ namespace Solid_Waste3
 
            " datasource=172.20.10.7; port=3306; username=jevin; password=password; database=GarbageDB;";
 
-
+// initializes to get a list of values 
         public List<RFID2> getallrfid()
         {
             //start with empty list 
@@ -26,7 +26,8 @@ namespace Solid_Waste3
 
             connection.Open();
             MySqlCommand command = new MySqlCommand("SELECT * FROM RFID", connection);
-
+        
+        // reads information stored in RFID table 
             using (MySqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
