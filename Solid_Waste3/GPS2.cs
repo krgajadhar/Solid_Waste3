@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Solid_Waste3
 {
     
-    // intializes values from sql table 
+    // intializes columns from sql table 
     internal class GPS2
     {
         public int ID { get; set; }
